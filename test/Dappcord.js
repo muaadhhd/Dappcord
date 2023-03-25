@@ -30,14 +30,12 @@ describe("Dappcord", function () {
       expect(result).to.equal(NAME)
     })
 
-    it("Sets the symbol", async () => {
+    it("Sets the symbol and owner", async () => {
       const result = await dappcord.symbol()
       expect(result).to.equal(SYMBOL)
-    })
 
-    it("Sets the owner", async () => {
-      const result = await dappcord.owner()
-      expect(result).to.equal(deployer.address)
+      const result2 = await dappcord.owner()
+      expect(result2).to.equal(deployer.address)
     })
   })
 

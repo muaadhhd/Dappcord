@@ -9,7 +9,7 @@ import Channels from './components/Channels'
 import Messages from './components/Messages'
 
 // ABIs
-import Dappcord from './abis/Dappcord.json'
+import ABI from './abis/Dappcord.json'
 
 // Config
 import config from './config.json';
@@ -28,11 +28,17 @@ function App() {
   const [messages, setMessages] = useState([])
 
   const loadBlockchainData = async () => {
+    window.ethereum.on('accountsChanged', async () => {
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const account = ethers.utils.getAddress(accounts[0])
+      setAccount(account);
+    })
+    
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     setProvider(provider)
 
     const network = await provider.getNetwork()
-    const dappcord = new ethers.Contract(config[network.chainId].Dappcord.address, Dappcord, provider)
+    const dappcord = new ethers.Contract(config[network.chainId].Dappcord.address, ABI, provider)
     setDappcord(dappcord)
 
     const totalChannels = await dappcord.totalChannels()
@@ -44,10 +50,6 @@ function App() {
     }
 
     setChannels(channels)
-
-    window.ethereum.on('accountsChanged', async () => {
-      window.location.reload()
-    })
   }
 
   useEffect(() => {

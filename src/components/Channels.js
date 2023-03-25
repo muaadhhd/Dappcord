@@ -1,16 +1,15 @@
 const Channels = ({ provider, account, dappcord, channels, currentChannel, setCurrentChannel }) => {
   const channelHandler = async (channel) => {
-    // Check if user has joined
-    // If they haven't allow them to mint.
     const hasJoined = await dappcord.hasJoined(channel.id, account)
 
     if (hasJoined) {
-      setCurrentChannel(channel)
+      setCurrentChannel(channel) 
     } else {
       const signer = await provider.getSigner()
-      const transaction = await dappcord.connect(signer).mint(channel.id, { value: channel.cost })
+      const transaction = await dappcord.connect(signer).mint(channel.id, {value: channel.cost})
       await transaction.wait()
-      setCurrentChannel(channel)
+      setCurrentChannel(channel) 
+
     }
   }
 
@@ -21,10 +20,12 @@ const Channels = ({ provider, account, dappcord, channels, currentChannel, setCu
 
         <ul>
           {channels.map((channel, index) => (
-            <li
-              onClick={() => channelHandler(channel)} key={index}
-              className={currentChannel && currentChannel.id.toString() === channel.id.toString() ? "active" : ""}>
-              {channel.name}
+            <li 
+              key={index}
+              onClick = {() => channelHandler(channel)}
+              className = {currentChannel && currentChannel.id.toString() === channel.id.toString() ? "active" : ""}
+            >
+              #{channel.name}
             </li>
           ))}
         </ul>

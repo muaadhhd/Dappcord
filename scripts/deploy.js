@@ -18,8 +18,8 @@ async function main() {
   console.log(`Deployed Dappcord Contract at: ${dappcord.address}\n`)
 
   // Create 3 Channels
-  const CHANNEL_NAMES = ["general", "intro", "jobs"]
-  const COSTS = [tokens(1), tokens(0), tokens(0.25)]
+  const CHANNEL_NAMES = ["general", "muaadh", "jobs"]
+  const COSTS = [tokens(1), tokens(0.5), tokens(0.25)]
 
   for (var i = 0; i < 3; i++) {
     const transaction = await dappcord.connect(deployer).createChannel(CHANNEL_NAMES[i], COSTS[i])
