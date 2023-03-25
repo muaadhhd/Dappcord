@@ -34,3 +34,8 @@ In a separate terminal execute:
 ### 7. Start frontend
 In a separate terminal execute:
 `$ npm run start`
+
+
+![Screen Shot 2023-03-25 at 12 09 48 AM](https://user-images.githubusercontent.com/123268689/227696635-62de3e7d-a690-48c0-bfc4-a3048ed0fb9c.png)
+
+
