@@ -33,4 +33,4 @@ In a separate terminal execute:
 
 ### 7. Start frontend
 In a separate terminal execute:
-`$ npm run start`
+`$ npm run start`# Carify
